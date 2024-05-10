@@ -50,17 +50,15 @@ create_footer <- function (source_name, logo_image_path) {
 #'
 #' @export
 finalise_plot <- function(plot_name,
-                          source_name,
                           save_filepath=file.path(Sys.getenv("TMPDIR"), "tmp-nc.png"),
                           width_pixels=640,
                           height_pixels=450,
                           logo_image_path = file.path(system.file("data", package = 'bbplot'),"placeholder.png")) {
 
-  footer <- create_footer(source_name, logo_image_path)
 
   #Draw your left-aligned grid
   plot_left_aligned <- left_align(plot_name, c("subtitle", "title", "caption"))
-  plot_grid <- ggpubr::ggarrange(plot_left_aligned, footer,
+  plot_grid <- ggpubr::ggarrange(plot_left_aligned,
                                  ncol = 1, nrow = 2,
                                  heights = c(1, 0.045/(height_pixels/450)))
   ## print(paste("Saving to", save_filepath))
